@@ -1,4 +1,4 @@
-name: "CI solamente"
+name: CI solamente
 
 on:
   push:
