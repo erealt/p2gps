@@ -1,0 +1,59 @@
+apiVersion: 2018-10-01 
+location: spaincentral
+name: p2gps-multicontainer
+properties:
+  containers:
+    - name: mongo
+      properties:
+        image: acrgpsert.azurecr.io/p2gps:db
+        resources:
+          requests:
+            cpu: 0.15
+            memoryInGB: 0.2
+        ports:
+          - port: 27017
+          - port: 28017
+        volumeMounts:
+          - name: db-data
+            mountPath: /data/db
+    - name: order
+      properties:
+        image: acrgpsert.azurecr.io/p2gps:order
+        resources:
+          requests:
+            cpu: 0.3
+            memoryInGB: 0.5
+        ports:
+          - port: 8080
+        environmentVariables:
+          - name: MONGODB_HOST
+            value: localhost
+          - name: MONGODB_DATABASE
+            value: ordering
+    - name: web
+      properties:
+        image: acrgpsert.azurecr.io/p2gps:web
+        resources:
+          requests:
+            cpu: 0.25
+            memoryInGB: 0.3
+        ports:
+          - port: 8082
+        environmentVariables: []
+  osType: Linux
+  imageRegistryCredentials:
+    - server: acrgpsert.azurecr.io
+      username: tokenPull
+      password: ${{ secrets._PASSWORD }}
+  ipAddress:
+    type: Public
+    ports:
+      - protocol: tcp
+        port: 8080 # Puerto del contenedor 'order'
+      - protocol: tcp
+        port: 8082 # Puerto del contenedor 'web'
+      - protocol: tcp
+        port: 27017 # Puerto de MongoDB (Solo si es necesario el acceso externo)
+  volumes:
+    - name: db-data
+      emptyDir: {}
