@@ -3,7 +3,7 @@ name: CI sobre ACR
 on:
 
   push:
-    branches: [ main ]
+    branches: [ master ]
   workflow_dispatch:
 
 
