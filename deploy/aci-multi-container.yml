@@ -27,7 +27,7 @@ properties:
           - port: 8080
         environmentVariables:
           - name: MONGODB_HOST
-            value: mongo
+            value: localhost
           - name: MONGODB_DATABASE
             value: ordering
     - name: web
