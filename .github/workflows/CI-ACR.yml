@@ -72,6 +72,6 @@ jobs:
           
       - name: Push a ACR 
         run: | 
-        docker push ${{ secrets.ACR_LOGIN_SERVER }}/p2gps:order 
-        docker push ${{ secrets.ACR_LOGIN_SERVER }}/p2gps:web
+        docker push ${{ secrets.ACR_LOGIN_SERVER }}/p2gps25:order 
+        docker push ${{ secrets.ACR_LOGIN_SERVER }}/p2gps25:web
         

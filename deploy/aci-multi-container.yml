@@ -18,7 +18,7 @@ properties:
             mountPath: /data/db
     - name: order
       properties:
-        image: acrgpsert.azurecr.io/p2gps:order
+        image: acrgpsert.azurecr.io/p2gps25:order
         resources:
           requests:
             cpu: 0.3
@@ -32,7 +32,7 @@ properties:
             value: ordering
     - name: web
       properties:
-        image: acrgpsert.azurecr.io/p2gps:web
+        image: acrgpsert.azurecr.io/p2gps25:web
         resources:
           requests:
             cpu: 0.25
