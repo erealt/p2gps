@@ -33,10 +33,10 @@ jobs:
           gradle-version: 2.1
       
      
-      - ame: build del Front
+      - name: build del Front
         working-directory: src/Clients
         run: ./gradlew build
-        uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v4
         with:
           name: Clients-Artifacts
           path: src/Clients/build/libs
